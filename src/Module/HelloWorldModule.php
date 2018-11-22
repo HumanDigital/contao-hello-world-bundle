@@ -34,8 +34,12 @@ class HelloWorldModule extends \Module
     /**
      * Generates the module.
      */
-    protected function compile()
-    {
-        $this->Template->message = 'Hello World';
-    }
+    protected function compile() {
+        //$this->Template->message = 'Hello World';
+        # Klasse MessageGenerator als Service einbinden
+		$messageGenerator = \Contao\System::getContainer()->get('humandigital.contao_hello_world_bundle.message_generator');
+		$message = $messageGenerator->sayHelloTo('World');
+
+		$this->Template->message = $message;    
+	}
 }

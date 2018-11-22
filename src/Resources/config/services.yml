@@ -7,3 +7,6 @@ services:
         Symfony\Component\DependencyInjection\ContainerAwareInterface:
             calls:
                 - ["setContainer", ["@service_container"]]
+    
+    humandigital.contao_hello_world_bundle.message_generator:
+        class: Humandigital\ContaoHelloWorldBundle\Library\MessageGenerator
