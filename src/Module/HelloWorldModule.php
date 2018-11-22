@@ -1,7 +1,14 @@
 <?php
 
-namespace Humandigital\ContaoHelloWorldBundle\Module;
+/*
+ * This file is part of Contao Hello World Bundle.
+ *
+ * (c) HumanDigital
+ *
+ * @license LGPL-3.0-or-later
+ */
 
+namespace Humandigital\ContaoHelloWorldBundle\Module;
 
 class HelloWorldModule extends \Haste\Frontend\AbstractFrontendModule
 {
@@ -10,20 +17,19 @@ class HelloWorldModule extends \Haste\Frontend\AbstractFrontendModule
      */
     protected $strTemplate = 'mod_helloWorld';
 
-
     /**
      * Generates the module.
      */
-    protected function compile() {
+    protected function compile()
+    {
         //$this->Template->message = 'Hello World';
-        # Klasse MessageGenerator als Service einbinden
-		$messageGenerator = \Contao\System::getContainer()->get('humandigital.contao_hello_world_bundle.message_generator');
-		$message = $messageGenerator->sayHelloTo('World');
+        // Klasse MessageGenerator als Service einbinden
+        $messageGenerator = \Contao\System::getContainer()->get('humandigital.contao_hello_world_bundle.message_generator');
+        $message = $messageGenerator->sayHelloTo('World');
 
-		$this->Template->message = $message;    
-	}
+        $this->Template->message = $message;
+    }
 }
-
 
 /*
 class HelloWorldModule extends \Module
@@ -61,10 +67,10 @@ class HelloWorldModule extends \Module
     protected function compile() {
         //$this->Template->message = 'Hello World';
         # Klasse MessageGenerator als Service einbinden
-		$messageGenerator = \Contao\System::getContainer()->get('humandigital.contao_hello_world_bundle.message_generator');
-		$message = $messageGenerator->sayHelloTo('World');
+        $messageGenerator = \Contao\System::getContainer()->get('humandigital.contao_hello_world_bundle.message_generator');
+        $message = $messageGenerator->sayHelloTo('World');
 
-		$this->Template->message = $message;    
-	}
+        $this->Template->message = $message;
+    }
 }
 */
