@@ -2,18 +2,42 @@
 
 namespace Humandigital\ContaoHelloWorldBundle\Module;
 
-class HelloWorldModule extends \Module
+
+class HelloWorldModule extends \Haste\Frontend\AbstractFrontendModule
 {
     /**
      * @var string
      */
     protected $strTemplate = 'mod_helloWorld';
 
+
     /**
-     * Displays a wildcard in the back end.
-     *
-     * @return string
+     * Generates the module.
      */
+    protected function compile() {
+        //$this->Template->message = 'Hello World';
+        # Klasse MessageGenerator als Service einbinden
+		$messageGenerator = \Contao\System::getContainer()->get('humandigital.contao_hello_world_bundle.message_generator');
+		$message = $messageGenerator->sayHelloTo('World');
+
+		$this->Template->message = $message;    
+	}
+}
+
+
+/*
+class HelloWorldModule extends \Module
+{
+    # **
+    # * @var string
+    # *
+    protected $strTemplate = 'mod_helloWorld';
+
+    # **
+    # * Displays a wildcard in the back end.
+    # *
+    # * @return string
+    # *
     public function generate()
     {
         if (TL_MODE == 'BE') {
@@ -31,9 +55,9 @@ class HelloWorldModule extends \Module
         return parent::generate();
     }
 
-    /**
-     * Generates the module.
-     */
+    # **
+    # * Generates the module.
+    # *
     protected function compile() {
         //$this->Template->message = 'Hello World';
         # Klasse MessageGenerator als Service einbinden
@@ -43,3 +67,4 @@ class HelloWorldModule extends \Module
 		$this->Template->message = $message;    
 	}
 }
+*/
